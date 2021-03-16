@@ -74,9 +74,14 @@ lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
 set completeopt=menuone,noinsert,noselect
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
+" telescope
+nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
+nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
+nnoremap <Leader>pf :lua require('telescope.builtin').find_files()<CR>
+
 " lsp
 lua require'lspconfig'.pyls.setup{ on_attach=require'completion'.on_attach }
-nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
+
 nnoremap <leader>gd :lua vim.lsp.buf.definition()<CR>
 nnoremap <leader>gi :lua vim.lsp.buf.implementation()<CR>
 nnoremap <leader>vsh :lua vim.lsp.buf.signature_help()<CR>
@@ -101,3 +106,6 @@ nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <leader>pv :Sex!<CR>
 nnoremap <leader>bb <C-^><CR>
+
+" python virtualenv pynvim
+let g:python3_host_prog = "/home/$(USER)/miniconda3/bin/python"
